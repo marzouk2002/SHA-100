@@ -1,1 +1,3 @@
-console.log("hello")
+const hash = "hello";
+
+export default hash
