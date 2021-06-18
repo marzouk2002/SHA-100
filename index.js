@@ -1,8 +1,10 @@
 require('dotenv').config()
 const app = require('express')()
 
-app.get('/', (req, res) => {
-    res.json({msg:'hello'})
+app.set('view engine', 'ejs')
+
+app.get('/',  (req, res) => {
+    res.render('index')
 })
 
 const Port = process.env.PORT || 4000
