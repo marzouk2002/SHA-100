@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const sha100 = require('./sha100.js')
+const sha100 = require('./dist')
 
 app.set('view engine', 'ejs')
 
