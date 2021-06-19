@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const sha100 = require('./dist')
+const sha100 = require('./dist').default
 
 app.set('view engine', 'ejs')
 
@@ -13,8 +13,11 @@ app.get('/',  (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    console.log(req.body)
-    res.render('index')
+    const { input } = req.body
+    console.log(input)
+    const hash = input ? sha100(input) : undefined;
+    console.log(hash)
+    res.render('index', { hash })
 })
 
 const Port = process.env.PORT || 4000
