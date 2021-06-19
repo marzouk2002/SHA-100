@@ -1,5 +1,5 @@
-const hash = () => {
+function main(inputStr: string):string {
     return 'hello'
 };
 
-export default hash
+export default main

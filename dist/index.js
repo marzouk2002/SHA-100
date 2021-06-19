@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var hash = function () {
+function main(inputStr) {
     return 'hello';
-};
-exports.default = hash;
+}
+;
+exports.default = main;
