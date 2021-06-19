@@ -12,7 +12,7 @@ app.get('/',  (req, res) => {
     res.render('index')
 })
 
-app.post('/hash', (req, res) => {
+app.post('/', (req, res) => {
     console.log(req.body)
     res.render('index')
 })
