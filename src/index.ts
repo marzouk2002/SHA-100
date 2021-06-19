@@ -4,13 +4,12 @@ function main(inputStr: string):Array<string> {
 
 // helper functions
 function format(str: string):Array<string> {
-    let binaryStr = str.split('').map(char => char.charCodeAt(0).toString(2)).join('')
+    let binaryArr = str.split('').map(char => char.charCodeAt(0).toString(2))
     
-    const toOneHundred: number = 100 - binaryStr.length % 100 
-    const zerosToAdd: string = Array(toOneHundred).fill(0).join('')
-    binaryStr = zerosToAdd + binaryStr
+    const toOneHundred: number = 100 - binaryArr.length % 100 
+    const zerosToAdd: Array<string> = Array(toOneHundred).fill('0')
+    binaryArr = [...zerosToAdd, ...binaryArr]
 
-    const binaryArr: Array<string> = binaryStr.split('');
     const toReturn:Array<string> = []
 
     while(binaryArr.length) {
