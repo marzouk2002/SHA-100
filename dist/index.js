@@ -11,16 +11,14 @@ function main(inputStr) {
 ;
 // helper functions
 function format(str) {
-    var binaryArr = str.split('').map(function (char) { return char.charCodeAt(0).toString(2).split(''); });
+    var binaryArr = str.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join('').split("");
     var toOneHundred = 100 - binaryArr.length % 100;
     var zerosToAdd = Array(toOneHundred).fill('0');
     binaryArr = __spreadArray(__spreadArray([], zerosToAdd), binaryArr);
     var toReturn = [];
-    console.log(binaryArr);
     while (binaryArr.length) {
         toReturn.push(binaryArr.splice(0, 100).join(''));
     }
-    console.log(toReturn);
     return toReturn;
 }
 exports.default = main;
