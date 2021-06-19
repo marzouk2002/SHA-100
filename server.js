@@ -14,9 +14,7 @@ app.get('/',  (req, res) => {
 
 app.post('/', (req, res) => {
     const { input } = req.body
-    console.log(input)
     const hash = input ? sha100(input) : undefined;
-    console.log(hash)
     res.render('index', { hash })
 })
 
