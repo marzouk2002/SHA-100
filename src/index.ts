@@ -1,4 +1,3 @@
-
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
