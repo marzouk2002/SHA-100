@@ -13,7 +13,7 @@ function format(str: string):Array<string> {
     const toReturn:Array<string> = []
 
     while(binaryArr.length) {
-        toReturn.push(binaryArr.splice(0, 100).join(' '))
+        toReturn.push(binaryArr.splice(0, 100).join(''))
     }
 
     return toReturn

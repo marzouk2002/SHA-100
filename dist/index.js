@@ -17,7 +17,7 @@ function format(str) {
     binaryArr = __spreadArray(__spreadArray([], zerosToAdd), binaryArr);
     var toReturn = [];
     while (binaryArr.length) {
-        toReturn.push(binaryArr.splice(0, 100).join(' '));
+        toReturn.push(binaryArr.splice(0, 100).join(''));
     }
     return toReturn;
 }
