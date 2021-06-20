@@ -5,12 +5,14 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     return to;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// main function
 function main(inputStr) {
-    return format(inputStr);
+    var binaryArr = formatInput(inputStr);
+    return formatOutput(binaryArr[0]);
 }
 ;
 // helper functions
-function format(str) {
+function formatInput(str) {
     var binaryArr = str.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join('').split("");
     var toOneHundred = 100 - binaryArr.length % 100;
     var zerosToAdd = Array(toOneHundred).fill('0');
@@ -20,5 +22,8 @@ function format(str) {
         toReturn.push(binaryArr.splice(0, 100).join(''));
     }
     return toReturn;
+}
+function formatOutput(str) {
+    return Number.parseInt(str, 2).toString(16).toUpperCase();
 }
 exports.default = main;
