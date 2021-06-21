@@ -8,8 +8,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // main function
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
-    var readyToHash = preCompressing(binaryArr);
-    return formatOutput(readyToHash[2].join(""));
+    var readyToComp = preCompressing(binaryArr);
+    var finalBinaryStr = compressor(readyToComp);
+    return formatOutput(finalBinaryStr);
 }
 ;
 // steps
@@ -32,6 +33,27 @@ function preCompressing(Arr) {
         newArr.push(reverceArr(arr));
     });
     return newArr;
+}
+function compressor(Arr) {
+    var acumRes = __spreadArray([], Arr[0]);
+    Arr.forEach(function (arr, i) {
+        var numToUse = Number.parseInt(arr.slice(((i % 50) * 2), ((i % 50) * 2) + 2).join(''), 2);
+        var opToUse;
+        switch (numToUse) {
+            case 0:
+                opToUse = myXOr;
+                break;
+            case 1:
+                opToUse = myAdd;
+                break;
+            case 2:
+                opToUse = myXNOr;
+                break;
+            default:
+                opToUse = myOr;
+        }
+    });
+    return acumRes.join("");
 }
 function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();

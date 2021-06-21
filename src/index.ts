@@ -5,9 +5,9 @@ type arr2dStr= Array<arrStr>;
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
-    const readyToHash = preCompressing(binaryArr)
-
-    return formatOutput(readyToHash[2].join(""))
+    const readyToComp = preCompressing(binaryArr)
+    const finalBinaryStr = compressor(readyToComp)
+    return formatOutput(finalBinaryStr)
 };
 
 // steps
@@ -35,6 +35,28 @@ function preCompressing(Arr: arr2dStr): arr2dStr {
         newArr.push(reverceArr(arr))
     })
     return newArr
+}
+
+function compressor(Arr: arr2dStr): string {
+    let acumRes = [...Arr[0]]
+    Arr.forEach((arr, i)=> {
+        const numToUse = Number.parseInt(arr.slice(((i%50)*2), ((i%50)*2)+2).join(''), 2)
+        let opToUse: Function;
+        switch(numToUse) {
+            case 0:
+                opToUse = myXOr;
+                break;
+            case 1:
+                opToUse = myAdd;
+                break;
+            case 2:
+                opToUse = myXNOr;
+                break;
+            default:
+                opToUse = myOr
+        }
+    })
+    return acumRes.join("")
 }
 
 function formatOutput(str: string):string {
