@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // main function
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
-    return formatOutput(binaryArr[0]);
+    return formatOutput(binaryArr[0].join(""));
 }
 ;
 // helper functions
@@ -19,7 +19,7 @@ function formatInput(str) {
     binaryArr = __spreadArray(__spreadArray([], zerosToAdd), binaryArr);
     var toReturn = [];
     while (binaryArr.length) {
-        toReturn.push(binaryArr.splice(0, 100).join(''));
+        toReturn.push(binaryArr.splice(0, 100));
     }
     return toReturn;
 }
@@ -27,13 +27,13 @@ function preHashing(arr) {
     var newArr = [];
     arr.forEach(function (str) {
     });
-    return [];
+    return newArr;
 }
 function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();
 }
 // Operations
-function reverceStr(str) {
-    return str;
+function reverceStr(arr) {
+    return arr.reverse();
 }
 exports.default = main;
