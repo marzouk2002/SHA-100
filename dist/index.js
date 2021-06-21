@@ -36,14 +36,15 @@ function preCompressing(Arr) {
 }
 function compressor(Arr) {
     var acumRes = __spreadArray([], Arr[0]);
+    Arr.splice(0, 1);
     Arr.forEach(function (arr, i) {
         var numToUse = Number.parseInt(arr.slice(((i % 50) * 2), ((i % 50) * 2) + 2).join(''), 2);
         var opToUse;
         switch (numToUse) {
-            case 0:
+            case 1:
                 opToUse = myXOr;
                 break;
-            case 1:
+            case 3:
                 opToUse = myAdd;
                 break;
             case 2:
@@ -52,6 +53,7 @@ function compressor(Arr) {
             default:
                 opToUse = myOr;
         }
+        acumRes = __spreadArray([], compressorHelper(opToUse, acumRes, arr));
     });
     return acumRes.join("");
 }
@@ -68,6 +70,13 @@ function mix25(arr) {
     var thirdChunk = arr.slice(50, 75);
     var fourthChunk = arr.slice(75);
     return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], secondChunk), firstChunk), fourthChunk), thirdChunk);
+}
+function compressorHelper(opToUse, acumRes, currentArr) {
+    var toReturn = [];
+    for (var i = 0; i < 100; i++) {
+        toReturn.push(opToUse(acumRes[i], currentArr[i]));
+    }
+    return toReturn;
 }
 // Operations
 function myAdd(bit1, bit2) {

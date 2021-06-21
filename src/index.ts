@@ -39,14 +39,15 @@ function preCompressing(Arr: arr2dStr): arr2dStr {
 
 function compressor(Arr: arr2dStr): string {
     let acumRes = [...Arr[0]]
+    Arr.splice(0, 1)
     Arr.forEach((arr, i)=> {
         const numToUse = Number.parseInt(arr.slice(((i%50)*2), ((i%50)*2)+2).join(''), 2)
         let opToUse: Function;
         switch(numToUse) {
-            case 0:
+            case 1:
                 opToUse = myXOr;
                 break;
-            case 1:
+            case 3:
                 opToUse = myAdd;
                 break;
             case 2:
@@ -55,6 +56,7 @@ function compressor(Arr: arr2dStr): string {
             default:
                 opToUse = myOr
         }
+        acumRes = [...compressorHelper(opToUse, acumRes, arr)]
     })
     return acumRes.join("")
 }
@@ -75,6 +77,14 @@ function mix25(arr: arrStr): arrStr {
     const fourthChunk = arr.slice(75)
 
     return [ ...secondChunk, ...firstChunk, ...fourthChunk, ...thirdChunk]
+}
+
+function compressorHelper(opToUse: Function, acumRes: arrStr, currentArr: arrStr): arrStr {
+    const toReturn: arrStr = []
+    for (let i = 0; i < 100; i++) {
+        toReturn.push(opToUse(acumRes[i], currentArr[i]))
+    }
+    return toReturn
 }
 
 // Operations
