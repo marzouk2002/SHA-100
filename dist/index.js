@@ -8,8 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // main function
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
-    console.log('original arr:', binaryArr);
-    console.log('ready for hash:', preHashing(binaryArr));
+    preCompressing(binaryArr);
     return formatOutput(binaryArr[0].join(""));
 }
 ;
@@ -25,7 +24,7 @@ function formatInput(str) {
     }
     return toReturn;
 }
-function preHashing(Arr) {
+function preCompressing(Arr) {
     var newArr = [];
     Arr.forEach(function (arr) {
         newArr.push(arr);
@@ -39,13 +38,13 @@ function formatOutput(str) {
 }
 // Operations
 function reverceArr(arr) {
-    return arr.reverse();
+    return __spreadArray([], arr).reverse();
 }
 function mix25(arr) {
-    var firstChunk = arr.splice(0, 25);
-    var secondChunk = arr.splice(0, 25);
-    var thirdChunk = arr.splice(0, 25);
-    var fourthChunk = arr.splice(0, 25);
-    return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], fourthChunk), thirdChunk), secondChunk), firstChunk);
+    var firstChunk = arr.slice(0, 25);
+    var secondChunk = arr.slice(25, 50);
+    var thirdChunk = arr.slice(50, 75);
+    var fourthChunk = arr.slice(75);
+    return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], secondChunk), firstChunk), fourthChunk), thirdChunk);
 }
 exports.default = main;

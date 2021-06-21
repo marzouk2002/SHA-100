@@ -5,8 +5,7 @@ type arr2dStr= Array<arrStr>;
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
-    console.log('original arr:', binaryArr)
-    console.log('ready for hash:',preHashing(binaryArr))
+    preCompressing(binaryArr)
 
     return formatOutput(binaryArr[0].join(""))
 };
@@ -28,7 +27,7 @@ function formatInput(str: string):arr2dStr {
     return toReturn
 }
 
-function preHashing(Arr: arr2dStr): arr2dStr {
+function preCompressing(Arr: arr2dStr): arr2dStr {
     const newArr: arr2dStr = []
     Arr.forEach(arr => {
         newArr.push(arr)
@@ -44,16 +43,16 @@ function formatOutput(str: string):string {
 
 // Operations
 function reverceArr(arr: arrStr): arrStr {
-    return arr.reverse()
+    return [...arr].reverse()
 }
 
 function mix25(arr: arrStr): arrStr {
-    const firstChunk = arr.splice(0, 25)
-    const secondChunk = arr.splice(0, 25)
-    const thirdChunk = arr.splice(0, 25)
-    const fourthChunk = arr.splice(0, 25)
+    const firstChunk = arr.slice(0, 25)
+    const secondChunk = arr.slice(25, 50)
+    const thirdChunk = arr.slice(50, 75)
+    const fourthChunk = arr.slice(75)
 
-    return [...fourthChunk, ...thirdChunk, ...secondChunk, ...firstChunk]
+    return [ ...secondChunk, ...firstChunk, ...fourthChunk, ...thirdChunk]
 }
 
 export default main
