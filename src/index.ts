@@ -5,6 +5,8 @@ type arr2dStr= Array<arrStr>;
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
+    console.log('original arr:', binaryArr)
+    console.log('ready for hash:',preHashing(binaryArr))
 
     return formatOutput(binaryArr[0].join(""))
 };
@@ -26,10 +28,12 @@ function formatInput(str: string):arr2dStr {
     return toReturn
 }
 
-function preHashing(Arr: arrStr): arrStr {
-    const newArr: arrStr = []
-    Arr.forEach(ar => {
-        newArr.push()
+function preHashing(Arr: arr2dStr): arr2dStr {
+    const newArr: arr2dStr = []
+    Arr.forEach(arr => {
+        newArr.push(arr)
+        newArr.push(mix25(arr))
+        newArr.push(reverceArr(arr))
     })
     return newArr
 }

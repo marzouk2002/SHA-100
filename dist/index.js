@@ -8,6 +8,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // main function
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
+    console.log('original arr:', binaryArr);
+    console.log('ready for hash:', preHashing(binaryArr));
     return formatOutput(binaryArr[0].join(""));
 }
 ;
@@ -25,8 +27,10 @@ function formatInput(str) {
 }
 function preHashing(Arr) {
     var newArr = [];
-    Arr.forEach(function (ar) {
-        newArr.push();
+    Arr.forEach(function (arr) {
+        newArr.push(arr);
+        newArr.push(mix25(arr));
+        newArr.push(reverceArr(arr));
     });
     return newArr;
 }
