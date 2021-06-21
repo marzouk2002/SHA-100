@@ -5,12 +5,12 @@ type arr2dStr= Array<arrStr>;
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
-    preCompressing(binaryArr)
+    const readyToHash = preCompressing(binaryArr)
 
-    return formatOutput(binaryArr[0].join(""))
+    return formatOutput(readyToHash[2].join(""))
 };
 
-// helper functions
+// steps
 function formatInput(str: string):arr2dStr {
     let binaryArr = str.split('').map(char => char.charCodeAt(0).toString(2)).join('').split("")
     
@@ -41,7 +41,7 @@ function formatOutput(str: string):string {
     return Number.parseInt(str, 2).toString(16).toUpperCase()
 }
 
-// Operations
+// helper functions
 function reverceArr(arr: arrStr): arrStr {
     return [...arr].reverse()
 }
@@ -53,6 +53,23 @@ function mix25(arr: arrStr): arrStr {
     const fourthChunk = arr.slice(75)
 
     return [ ...secondChunk, ...firstChunk, ...fourthChunk, ...thirdChunk]
+}
+
+// Operations
+function myAdd(bit1 : string, bit2: string): string {
+    return Boolean(Number(bit1) && Number(bit2)) ? '1' : '0'
+}
+
+function myOr(bit1: string, bit2: string): string {
+    return Boolean(Number(bit1) || Number(bit2)) ? '1' : '0'
+}
+
+function myXOr(bit1: string, bit2: string): string {
+    return bit1 === bit2 ? '1' : '0'
+}
+
+function myXNOr(bit1: string, bit2: string): string {
+    return bit1 !== bit2 ? '1' : '0'
 }
 
 export default main

@@ -8,11 +8,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // main function
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
-    preCompressing(binaryArr);
-    return formatOutput(binaryArr[0].join(""));
+    var readyToHash = preCompressing(binaryArr);
+    return formatOutput(readyToHash[2].join(""));
 }
 ;
-// helper functions
+// steps
 function formatInput(str) {
     var binaryArr = str.split('').map(function (char) { return char.charCodeAt(0).toString(2); }).join('').split("");
     var toOneHundred = 100 - binaryArr.length % 100;
@@ -36,7 +36,7 @@ function preCompressing(Arr) {
 function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();
 }
-// Operations
+// helper functions
 function reverceArr(arr) {
     return __spreadArray([], arr).reverse();
 }
@@ -46,5 +46,18 @@ function mix25(arr) {
     var thirdChunk = arr.slice(50, 75);
     var fourthChunk = arr.slice(75);
     return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], secondChunk), firstChunk), fourthChunk), thirdChunk);
+}
+// Operations
+function myAdd(bit1, bit2) {
+    return Boolean(Number(bit1) && Number(bit2)) ? '1' : '0';
+}
+function myOr(bit1, bit2) {
+    return Boolean(Number(bit1) || Number(bit2)) ? '1' : '0';
+}
+function myXOr(bit1, bit2) {
+    return bit1 === bit2 ? '1' : '0';
+}
+function myXNOr(bit1, bit2) {
+    return bit1 !== bit2 ? '1' : '0';
 }
 exports.default = main;
