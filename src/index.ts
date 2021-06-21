@@ -22,9 +22,21 @@ function formatInput(str: string):Array<string> {
     return toReturn
 }
 
+function preHashing(arr: Array<string>): Array<string> {
+    const newArr: Array<string> = []
+    arr.forEach(str => {
+
+    })
+    return []
+}
+
 function formatOutput(str: string):string {
     return Number.parseInt(str, 2).toString(16).toUpperCase()
 }
 
+// Operations
+function reverceStr(str: string): string {
+    return str
+}
 
 export default main

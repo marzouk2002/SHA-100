@@ -23,7 +23,17 @@ function formatInput(str) {
     }
     return toReturn;
 }
+function preHashing(arr) {
+    var newArr = [];
+    arr.forEach(function (str) {
+    });
+    return [];
+}
 function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();
+}
+// Operations
+function reverceStr(str) {
+    return str;
 }
 exports.default = main;
