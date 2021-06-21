@@ -33,7 +33,14 @@ function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();
 }
 // Operations
-function reverceStr(arr) {
+function reverceArr(arr) {
     return arr.reverse();
+}
+function mix25(arr) {
+    var firstChunk = arr.splice(0, 25);
+    var secondChunk = arr.splice(0, 25);
+    var thirdChunk = arr.splice(0, 25);
+    var fourthChunk = arr.splice(0, 25);
+    return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], fourthChunk), thirdChunk), secondChunk), firstChunk);
 }
 exports.default = main;

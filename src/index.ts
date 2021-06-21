@@ -35,8 +35,17 @@ function formatOutput(str: string):string {
 }
 
 // Operations
-function reverceStr(arr: Array<string>): Array<string> {
+function reverceArr(arr: Array<string>): Array<string> {
     return arr.reverse()
+}
+
+function mix25(arr: Array<string>): Array<string> {
+    const firstChunk = arr.splice(0, 25)
+    const secondChunk = arr.splice(0, 25)
+    const thirdChunk = arr.splice(0, 25)
+    const fourthChunk = arr.splice(0, 25)
+
+    return [...fourthChunk, ...thirdChunk, ...secondChunk, ...firstChunk]
 }
 
 export default main
