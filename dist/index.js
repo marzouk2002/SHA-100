@@ -23,9 +23,10 @@ function formatInput(str) {
     }
     return toReturn;
 }
-function preHashing(arr) {
+function preHashing(Arr) {
     var newArr = [];
-    arr.forEach(function (str) {
+    Arr.forEach(function (ar) {
+        newArr.push();
     });
     return newArr;
 }

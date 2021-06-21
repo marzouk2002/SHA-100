@@ -1,3 +1,7 @@
+
+// My types
+type arrStr=Array<string>
+type arr2dStr= Array<arrStr>;
 // main function
 function main(inputStr: string):string {
     const binaryArr = formatInput(inputStr)
@@ -6,14 +10,14 @@ function main(inputStr: string):string {
 };
 
 // helper functions
-function formatInput(str: string):Array<Array<string>> {
+function formatInput(str: string):arr2dStr {
     let binaryArr = str.split('').map(char => char.charCodeAt(0).toString(2)).join('').split("")
     
     const toOneHundred: number = 100 - binaryArr.length % 100 
-    const zerosToAdd: Array<string> = Array(toOneHundred).fill('0')
+    const zerosToAdd: arrStr = Array(toOneHundred).fill('0')
     binaryArr = [...zerosToAdd, ...binaryArr]
 
-    const toReturn:Array<Array<string>> = []
+    const toReturn:arr2dStr = []
 
     while(binaryArr.length) {
         toReturn.push(binaryArr.splice(0, 100))
@@ -22,10 +26,10 @@ function formatInput(str: string):Array<Array<string>> {
     return toReturn
 }
 
-function preHashing(arr: Array<string>): Array<string> {
-    const newArr: Array<string> = []
-    arr.forEach(str => {
-
+function preHashing(Arr: arrStr): arrStr {
+    const newArr: arrStr = []
+    Arr.forEach(ar => {
+        newArr.push()
     })
     return newArr
 }
@@ -35,11 +39,11 @@ function formatOutput(str: string):string {
 }
 
 // Operations
-function reverceArr(arr: Array<string>): Array<string> {
+function reverceArr(arr: arrStr): arrStr {
     return arr.reverse()
 }
 
-function mix25(arr: Array<string>): Array<string> {
+function mix25(arr: arrStr): arrStr {
     const firstChunk = arr.splice(0, 25)
     const secondChunk = arr.splice(0, 25)
     const thirdChunk = arr.splice(0, 25)
