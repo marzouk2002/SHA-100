@@ -79,6 +79,10 @@ function mirrorLeft(arr) {
     var secondHalf = arr.slice(50);
     return __spreadArray(__spreadArray([], secondHalf.reverse()), secondHalf);
 }
+function symmetricRight(arr) {
+    var firstHalf = arr.slice(0, 50);
+    return __spreadArray(__spreadArray([], firstHalf.reverse()), firstHalf);
+}
 function compressorHelper(opToUse, acumRes, currentArr) {
     var toReturn = [];
     for (var i = 0; i < 100; i++) {
