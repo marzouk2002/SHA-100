@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function main(inputStr) {
     var binaryArr = formatInput(inputStr);
     var readyToComp = preCompressing(binaryArr);
-    var finalBinaryStr = compressor(readyToComp);
+    var finalBinaryStr = compressor(readyToComp).join('');
     return formatOutput(finalBinaryStr);
 }
 ;
@@ -33,29 +33,6 @@ function preCompressing(Arr) {
     return newArr;
 }
 function compressor(Arr) {
-    var acumRes = __spreadArray([], Arr[0]);
-    Arr.splice(0, 1);
-    Arr.forEach(function (arr, i) {
-        var numToUse = Number.parseInt(arr.slice(((i % 50) * 2), ((i % 50) * 2) + 2).join(''), 2);
-        var opToUse;
-        switch (numToUse) {
-            case 1:
-                opToUse = myXOr;
-                break;
-            case 3:
-                opToUse = myAdd;
-                break;
-            case 2:
-                opToUse = myXNOr;
-                break;
-            default:
-                opToUse = myOr;
-        }
-        acumRes = __spreadArray([], compressorHelper(opToUse, acumRes, arr));
-    });
-    return acumRes.join("");
-}
-function compressorRec(Arr) {
     var arr = __spreadArray([], Arr);
     if (arr.length === 1) {
         return arr[0];
@@ -63,7 +40,7 @@ function compressorRec(Arr) {
     else {
         var firstHalf = arr.slice(0, Math.floor(arr.length / 2));
         var secondHalf = arr.slice(Math.floor(arr.length / 2));
-        return compressorHelperRec(compressorRec(firstHalf), compressorRec(secondHalf));
+        return compressorHelper(compressor(firstHalf), compressor(secondHalf));
     }
 }
 function formatOutput(str) {
@@ -96,14 +73,7 @@ function symmetricLeft(arr) {
     var secondHalf = arr.slice(50);
     return __spreadArray(__spreadArray([], secondHalf), secondHalf.reverse());
 }
-function compressorHelper(opToUse, acumRes, currentArr) {
-    var toReturn = [];
-    for (var i = 0; i < 100; i++) {
-        toReturn.push(opToUse(acumRes[i], currentArr[i]));
-    }
-    return toReturn;
-}
-function compressorHelperRec(Arr1, Arr2) {
+function compressorHelper(Arr1, Arr2) {
     var toReturn = [];
     var numToUse = Number.parseInt(Arr1[0] + Arr2[0], 2);
     var opToUse;

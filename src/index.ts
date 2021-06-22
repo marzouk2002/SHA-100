@@ -6,7 +6,7 @@ type arr2dStr = Array<arrStr>;
 function main(inputStr: string): string {
     const binaryArr = formatInput(inputStr)
     const readyToComp = preCompressing(binaryArr)
-    const finalBinaryStr = compressor(readyToComp)
+    const finalBinaryStr = compressor(readyToComp).join('')
     return formatOutput(finalBinaryStr)
 };
 
@@ -35,39 +35,15 @@ function preCompressing(Arr: arr2dStr): arr2dStr {
     return newArr
 }
 
-function compressor(Arr: arr2dStr): string {
-    let acumRes = [...Arr[0]]
-    Arr.splice(0, 1)
-    Arr.forEach((arr, i) => {
-        const numToUse = Number.parseInt(arr.slice(((i % 50) * 2), ((i % 50) * 2) + 2).join(''), 2)
-        let opToUse: Function;
-        switch (numToUse) {
-            case 1:
-                opToUse = myXOr;
-                break;
-            case 3:
-                opToUse = myAdd;
-                break;
-            case 2:
-                opToUse = myXNOr;
-                break;
-            default:
-                opToUse = myOr
-        }
-        acumRes = [...compressorHelper(opToUse, acumRes, arr)]
-    })
-    return acumRes.join("")
-}
 
-function compressorRec(Arr: arr2dStr): any {
+function compressor(Arr: arr2dStr): arrStr {
     const arr: arr2dStr = [...Arr]
     if (arr.length === 1) {
         return arr[0]
     } else {
         const firstHalf = arr.slice(0, Math.floor(arr.length / 2))
         const secondHalf = arr.slice(Math.floor(arr.length / 2))
-
-        return compressorHelperRec(compressorRec(firstHalf), compressorRec(secondHalf))
+        return compressorHelper(compressor(firstHalf), compressor(secondHalf))
     }
 }
 
@@ -109,15 +85,7 @@ function symmetricLeft(arr: arrStr): arrStr {
     return [...secondHalf, ...secondHalf.reverse()]
 }
 
-function compressorHelper(opToUse: Function, acumRes: arrStr, currentArr: arrStr): arrStr {
-    const toReturn: arrStr = []
-    for (let i = 0; i < 100; i++) {
-        toReturn.push(opToUse(acumRes[i], currentArr[i]))
-    }
-    return toReturn
-}
-
-function compressorHelperRec(Arr1: arrStr, Arr2: arrStr): arrStr {
+function compressorHelper(Arr1: arrStr, Arr2: arrStr): arrStr {
     const toReturn: arrStr = []
     const numToUse = Number.parseInt(Arr1[0] + Arr2[0], 2)
     let opToUse: Function;
@@ -132,7 +100,7 @@ function compressorHelperRec(Arr1: arrStr, Arr2: arrStr): arrStr {
             opToUse = myXNOr;
             break;
         default:
-            opToUse = myOr
+            opToUse = myOr;
     }
 
     for (let i = 0; i < 100; i++) {
