@@ -94,6 +94,11 @@ function symmetricRight(arr: arrStr): arrStr {
     return [ ...firstHalf.reverse(), ...firstHalf]
 }
 
+function symmetricLeft(arr: arrStr): arrStr {
+    const secondHalf = arr.slice(50)
+    return [...secondHalf, ...secondHalf.reverse()]
+}
+
 function compressorHelper(opToUse: Function, acumRes: arrStr, currentArr: arrStr): arrStr {
     const toReturn: arrStr = []
     for (let i = 0; i < 100; i++) {

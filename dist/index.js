@@ -83,6 +83,10 @@ function symmetricRight(arr) {
     var firstHalf = arr.slice(0, 50);
     return __spreadArray(__spreadArray([], firstHalf.reverse()), firstHalf);
 }
+function symmetricLeft(arr) {
+    var secondHalf = arr.slice(50);
+    return __spreadArray(__spreadArray([], secondHalf), secondHalf.reverse());
+}
 function compressorHelper(opToUse, acumRes, currentArr) {
     var toReturn = [];
     for (var i = 0; i < 100; i++) {
