@@ -55,6 +55,17 @@ function compressor(Arr) {
     });
     return acumRes.join("");
 }
+function compressorRec(Arr) {
+    var arr = __spreadArray([], Arr);
+    if (arr.length === 1) {
+        return arr[0];
+    }
+    else {
+        var firstHalf = arr.slice(0, Math.floor(arr.length / 2));
+        var secondHalf = arr.slice(Math.floor(arr.length / 2));
+        return compressorHelperRec(compressorRec(firstHalf), compressorRec(secondHalf));
+    }
+}
 function formatOutput(str) {
     return Number.parseInt(str, 2).toString(16).toUpperCase();
 }
@@ -89,6 +100,28 @@ function compressorHelper(opToUse, acumRes, currentArr) {
     var toReturn = [];
     for (var i = 0; i < 100; i++) {
         toReturn.push(opToUse(acumRes[i], currentArr[i]));
+    }
+    return toReturn;
+}
+function compressorHelperRec(Arr1, Arr2) {
+    var toReturn = [];
+    var numToUse = Number.parseInt(Arr1[0] + Arr2[0], 2);
+    var opToUse;
+    switch (numToUse) {
+        case 1:
+            opToUse = myXOr;
+            break;
+        case 3:
+            opToUse = myAdd;
+            break;
+        case 2:
+            opToUse = myXNOr;
+            break;
+        default:
+            opToUse = myOr;
+    }
+    for (var i = 0; i < 100; i++) {
+        toReturn.push(opToUse(Arr1[i], Arr2[i]));
     }
     return toReturn;
 }
