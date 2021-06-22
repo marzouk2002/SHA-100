@@ -79,6 +79,11 @@ function mix25(arr: arrStr): arrStr {
     return [ ...secondChunk, ...firstChunk, ...fourthChunk, ...thirdChunk]
 }
 
+function mirrorRight(arr: arrStr): arrStr {
+    const firstHalf = arr.slice(0, 50)
+    return [...firstHalf, ...firstHalf.reverse()]
+}
+
 function compressorHelper(opToUse: Function, acumRes: arrStr, currentArr: arrStr): arrStr {
     const toReturn: arrStr = []
     for (let i = 0; i < 100; i++) {
