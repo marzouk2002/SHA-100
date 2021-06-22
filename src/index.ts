@@ -30,9 +30,7 @@ function formatInput(str: string):arr2dStr {
 function preCompressing(Arr: arr2dStr): arr2dStr {
     const newArr: arr2dStr = []
     Arr.forEach(arr => {
-        newArr.push(arr)
-        newArr.push(mix25(arr))
-        newArr.push(reverceArr(arr))
+        newArr.push(arr, mix25(arr), reverceArr(arr), mirrorRight(arr), mirrorLeft(arr), symmetricRight(arr), symmetricLeft(arr))
     })
     return newArr
 }
