@@ -84,6 +84,11 @@ function mirrorRight(arr: arrStr): arrStr {
     return [...firstHalf, ...firstHalf.reverse()]
 }
 
+function mirrorLeft(arr: arrStr): arrStr {
+    const secondHalf = arr.slice(50)
+    return [...secondHalf.reverse(), ...secondHalf]
+}
+
 function compressorHelper(opToUse: Function, acumRes: arrStr, currentArr: arrStr): arrStr {
     const toReturn: arrStr = []
     for (let i = 0; i < 100; i++) {

@@ -71,6 +71,14 @@ function mix25(arr) {
     var fourthChunk = arr.slice(75);
     return __spreadArray(__spreadArray(__spreadArray(__spreadArray([], secondChunk), firstChunk), fourthChunk), thirdChunk);
 }
+function mirrorRight(arr) {
+    var firstHalf = arr.slice(0, 50);
+    return __spreadArray(__spreadArray([], firstHalf), firstHalf.reverse());
+}
+function mirrorLeft(arr) {
+    var secondHalf = arr.slice(50);
+    return __spreadArray(__spreadArray([], secondHalf.reverse()), secondHalf);
+}
 function compressorHelper(opToUse, acumRes, currentArr) {
     var toReturn = [];
     for (var i = 0; i < 100; i++) {
