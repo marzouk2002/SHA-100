@@ -7,7 +7,7 @@ function setDotes() {
     }
 }
 
-setInterval(setDotes, 500)
+setInterval(setDotes, 300)
 
 $(window).on('load', () => {
     $('.loader-wrapper').fadeOut("slow");
